@@ -106,27 +106,18 @@ const kuntiks = [
     }
 ];
 
-const http = require('http');
-const port = 3000;
-const server = http.createServer((req, res) => {
-    if (req.url === '/api/prices') {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(prices));
-    }
-    else if (req.url === '/api/weights') {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(weights));
-    }
-    else if (req.url === '/api/kuntiks') {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(kuntiks));
-    }
-    else {
-        res.statusCode = 404;
-        res.end();
-    }
+const express = require('express');
+const app = express();
+app.get('/prices', (req, res) => {
+    res.json(prices);
 });
-
-server.listen(port, '127.0.0.1', () => {
-    console.log(`Server running at http://127.0.0.1:${port}/`);
+app.get('/weights', (req, res) => {
+    res.json(weights);
+});
+app.get('/kuntiks', (req, res) => {
+    res.json(kuntiks);
+});
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
