@@ -39,6 +39,27 @@ const weights = {
     "cooper": 15,
     "black": 10,
     "skyblue": 15
+};
+const quality = {
+    "wood": 1,
+    "iron": 1,
+    "steel": 2,
+    "diamond": 5,
+    "gold": 4,
+    "S": 1,
+    "M": 1,
+    "L": 1,
+    "XL": 1,
+    "XXL": 1,
+    "XXXL": 1,
+    "red": 1,
+    "tiger": 3,
+    "rainbow": 5,
+    "golden": 4,
+    "silver": 3,
+    "cooper": 2,
+    "black": 3,
+    "skyblue": 4
 }
 const kuntiks = [
     {
@@ -108,6 +129,9 @@ const kuntiks = [
 
 const express = require('express');
 const app = express();
+app.get('/quality', (req, res) => {
+    res.json(quality);
+});
 app.get('/prices', (req, res) => {
     res.json(prices);
 });
@@ -117,6 +141,8 @@ app.get('/weights', (req, res) => {
 app.get('/kuntiks', (req, res) => {
     res.json(kuntiks);
 });
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

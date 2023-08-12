@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3c8207-5446-4f09-9269-841a7f356a6f" name="Changes" comment="Добавил package.json">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="4d3c8207-5446-4f09-9269-841a7f356a6f" name="Changes" comment="Переписал все на Express" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +70,7 @@
       <updated>1691826874504</updated>
       <workItem from="1691826875737" duration="35000" />
       <workItem from="1691827067147" duration="539000" />
-      <workItem from="1691829030117" duration="1956000" />
+      <workItem from="1691829030117" duration="2345000" />
     </task>
     <task id="LOCAL-00001" summary="Initialisation">
       <option name="closed" value="true" />
@@ -100,7 +96,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691830362202</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Переписал все на Express">
+      <option name="closed" value="true" />
+      <created>1691831035503</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691831035503</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +114,7 @@
     <MESSAGE value="Initialisation" />
     <MESSAGE value="Initialisation 1.1" />
     <MESSAGE value="Добавил package.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил package.json" />
+    <MESSAGE value="Переписал все на Express" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переписал все на Express" />
   </component>
 </project>
