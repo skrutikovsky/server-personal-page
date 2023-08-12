@@ -1,0 +1,10 @@
+{
+  "name": "my-api",
+  "version": "1.0.0",
+  "description": "My API project",
+  "scripts": {
+    "start": "node api.js"
+  },
+  "author": "Dmitry Krutikov",
+  "license": "MIT"
+}
