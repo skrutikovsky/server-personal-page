@@ -128,7 +128,9 @@ const kuntiks = [
 ];
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 app.get('/quality', (req, res) => {
     res.json(quality);
 });
