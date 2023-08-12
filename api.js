@@ -127,19 +127,20 @@ const kuntiks = [
     }
 ];
 
+var idCounter = 3
 var tasks = [
     {
-        "id": 1,
+        "id": 0,
         "taskText": "Hello guys!",
         "isDone": true
     },
     {
-        "id": 3,
+        "id": 1,
         "taskText": "To do this!",
         "isDone": false
     },
     {
-        "id": 4,
+        "id": 2,
         "taskText": "Do something",
         "isDone": false
     }
@@ -153,27 +154,42 @@ var login = [
 const express = require('express');
 const cors = require('cors');
 const app = express();
+
+app.use(express.json());
 app.use(cors());
 app.post('/login', (req, res) => {
     const user = login.find(user => user.login === req.body.login && user.password === req.body.password);
-
     if (user) {
-        res.status(200)
+        res.status(200).send()
     } else {
-        res.status(401).json({ success: false, message: 'Incorrect login or password' });
+        res.status(401).send()
     }
 });
 app.get('/tasks', (req, res) => {
-    res.json(tasks);
+    const isDoneQueryParam = req.query.isDone;
+
+    let filteredTasks = tasks;
+    if (isDoneQueryParam !== undefined) {
+        const isDone = isDoneQueryParam.toLowerCase() === 'true';
+        filteredTasks = tasks.filter(task => task.isDone === isDone);
+    }
+    if (isDoneQueryParam !== undefined) {
+        const isDone = isDoneQueryParam.toLowerCase() === 'false';
+        filteredTasks = tasks.filter(task => task.isDone === isDone);
+    }
+    res.json(filteredTasks);
 });
 app.post('/tasks', (req, res) => {
-    tasks.push(req.body);
-    res.status(200);
+    const task = req.body;
+    task.id = idCounter;
+    idCounter += 1;
+    tasks.push(task);
+    res.status(200).send();
 });
 app.delete('/tasks/:id', (req, res) => {
     const idToRemove = parseInt(req.params.id);
     tasks = tasks.filter(obj => obj.id !== idToRemove);
-    res.sendStatus(200);
+    res.status(200).send();
 });
 app.patch('/tasks/:id', (req, res) => {
     const idToChange = parseInt(req.params.id);
@@ -186,7 +202,7 @@ app.patch('/tasks/:id', (req, res) => {
     if (index !== -1) {
         tasks[index] = obj;
     }
-    res.sendStatus(200);
+    res.status(200).send();
 });
 
 app.get('/quality', (req, res) => {
