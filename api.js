@@ -127,10 +127,68 @@ const kuntiks = [
     }
 ];
 
+var tasks = [
+    {
+        "id": 1,
+        "taskText": "Hello guys!",
+        "isDone": true
+    },
+    {
+        "id": 3,
+        "taskText": "To do this!",
+        "isDone": false
+    },
+    {
+        "id": 4,
+        "taskText": "Do something",
+        "isDone": false
+    }
+]
+var login = [
+    {
+        "login": "123",
+        "password": "123"
+    },
+]
 const express = require('express');
 const cors = require('cors');
 const app = express();
 app.use(cors());
+app.post('/login', (req, res) => {
+    const user = login.find(user => user.login === req.body.login && user.password === req.body.password);
+
+    if (user) {
+        res.status(200)
+    } else {
+        res.status(401).json({ success: false, message: 'Incorrect login or password' });
+    }
+});
+app.get('/tasks', (req, res) => {
+    res.json(tasks);
+});
+app.post('/tasks', (req, res) => {
+    tasks.push(req.body);
+    res.status(200);
+});
+app.delete('/tasks/:id', (req, res) => {
+    const idToRemove = parseInt(req.params.id);
+    tasks = tasks.filter(obj => obj.id !== idToRemove);
+    res.sendStatus(200);
+});
+app.patch('/tasks/:id', (req, res) => {
+    const idToChange = parseInt(req.params.id);
+    const index = tasks.findIndex(function(obj) {
+        return obj.id === idToChange;
+    });
+    const obj = req.body
+    obj.isDone = !obj.isDone
+    // если объект с заданным ID найден, обновляем его
+    if (index !== -1) {
+        tasks[index] = obj;
+    }
+    res.sendStatus(200);
+});
+
 app.get('/quality', (req, res) => {
     res.json(quality);
 });
